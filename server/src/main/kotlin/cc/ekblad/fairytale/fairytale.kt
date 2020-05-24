@@ -1,10 +1,8 @@
 package cc.ekblad.fairytale
-import ch.qos.logback.classic.Level
-import ch.qos.logback.classic.Logger
+import ch.qos.logback.classic.*
 import com.xenomachina.argparser.*
 import io.ktor.application.call
 import io.ktor.http.content.*
-import io.ktor.response.respondRedirect
 import io.ktor.routing.*
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
@@ -66,10 +64,8 @@ fun main(args : Array<String>) {
                         service.restartMusic(call)
                     }
                 }
-                get("/") {
-                    call.respondRedirect("/index.html", true)
-                }
                 static("/") {
+                    resource("/", "client/index.html")
                     resources("client")
                 }
             }
