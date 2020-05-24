@@ -1,0 +1,104 @@
+.adventure {
+  margin: auto;
+  margin-top: 1em;
+  padding: 1em;
+}
+
+.adventure h2 {
+  margin-top: 0;
+  margin-left: 5%;
+}
+
+.sceneControls {
+  display: grid;
+  grid-template-columns: auto 8em;
+}
+
+.sceneList {
+  border-radius: 0.25em;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.sceneButton {
+  width: 350px;
+  height: 300px;
+  max-width: 85%;
+  text-align: center;
+  display: inline-block;
+  margin: 1em;
+  border-radius: 0.25em;
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+}
+
+.sceneButton.active {
+  border: 2px solid green;
+}
+
+.sceneButton:hover, .sceneButton.selected, .sceneSidebar button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.sceneThumbnail {
+  width: 350px;
+  height: 200px;
+  max-width: 85%;
+  margin-top: 1em;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0;
+}
+
+.sceneButton img {
+  border-radius: 0.25em;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+}
+
+.sceneCaption {
+}
+
+.sceneSidebar {
+  border-radius: 0 0.25em 0.25em 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin-top: 1em;
+  width: 5em;
+  height: 4em;
+  text-align: center;
+  padding-top: 1em;
+}
+
+.sceneSidebar button {
+  border: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 0.25em;
+  color: #d0d0d0;
+  font-size: 24pt;
+  font-weight: bold;
+  width: 2em;
+  height: 2em;
+  cursor: pointer;
+}
+
+@media(max-width: 450px) {
+  .sceneSidebar {
+    border-radius: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2em;
+    padding-top: 0.5em;
+  }
+  .adventure h2 {
+    font-size: 14pt;
+    margin-top: 1em;
+  }
+  .sceneSidebar button {
+    font-size: 14pt;
+  }
+  .sceneControls {
+    display: block;
+  }
+}

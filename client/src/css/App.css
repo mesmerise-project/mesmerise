@@ -1,0 +1,7 @@
+body {
+  background: url(/background.jpg);
+  background-blend-mode: multiply;
+  background-color: #404040;
+  color: #d0d0d0;
+  font-size: 18pt;
+}

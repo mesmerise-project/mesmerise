@@ -1,0 +1,9 @@
+{
+  "short_name": "Fairytale",
+  "name": "Fairytale GM Helper",
+  "icons": [],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#000000",
+  "background_color": "#ffffff"
+}
