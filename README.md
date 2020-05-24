@@ -79,3 +79,9 @@ installed on your system.
 
 Once you do, check out the source code and run `make dist` to build your own
 release package.
+
+License
+-------
+All code and assets are Copyright © 2020 by the Fairytale project contributors.
+The application is made available to the public under the
+[Affero GPL license version 3.0](https://www.gnu.org/licenses/agpl-3.0.en.html).
