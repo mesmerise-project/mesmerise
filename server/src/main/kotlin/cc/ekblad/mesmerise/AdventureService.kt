@@ -47,7 +47,7 @@ class AdventureService(
         scene: String
     ) {
         if(ensureAdventureLoaded(adventureName)) {
-            val success = adventure?.scenes?.get(scene).fmap {
+            val success = adventure?.scenes?.get(scene)?.let {
                 viewer.setScene(it) ; true
             } ?: false
             if(success) {

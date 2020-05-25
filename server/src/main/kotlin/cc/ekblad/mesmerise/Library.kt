@@ -53,7 +53,7 @@ class Library(private val path : String) {
     }
 
     fun loadAdventure(adventureName : String) : Adventure? {
-        return getAdventureMeta(adventureName).fmap(::loadAdventure)
+        return getAdventureMeta(adventureName)?.let(::loadAdventure)
     }
 
     fun loadAdventure(adventure : AdventureMeta) : Adventure {
@@ -118,7 +118,7 @@ class Library(private val path : String) {
         adventure : String,
         scene : String
     ) : File? {
-        return getAdventureMeta(adventure).fmap {
+        return getAdventureMeta(adventure)?.let {
             getSceneThumbnail(it, scene)
         }
     }
@@ -130,7 +130,7 @@ class Library(private val path : String) {
         return adventure.scenes
             .firstOrNull { it.name == scene }
             ?.background
-            .fmap {
+            ?.let {
                 createThumbnail(
                     adventure.name,
                     scene,
@@ -166,11 +166,11 @@ class Library(private val path : String) {
     }
 
     private fun mkScene(adventure : String, s: SceneMeta) : Pair<String, Scene> {
-        val bg = s.background.fmap {
+        val bg = s.background?.let {
             val path = Paths.get(this.path, adventure, IMAGE_DIR, it)
             Background(path.toString())
         }
-        val score = s.music.fmap {
+        val score = s.music?.let {
             val path = Paths.get(this.path, adventure, MUSIC_DIR, it)
             Song(path.toString())
         }

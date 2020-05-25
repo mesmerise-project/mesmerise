@@ -9,9 +9,6 @@ import java.awt.Image
 import java.io.File
 import kotlin.system.exitProcess
 
-internal fun <T, U> T?.fmap(f : (T) -> U) : U? =
-    if (this == null) null else f(this)
-
 internal fun isImageFile(f : File) : Boolean =
     f.extension in IMAGE_FORMATS
 internal val IMAGE_FORMATS =
