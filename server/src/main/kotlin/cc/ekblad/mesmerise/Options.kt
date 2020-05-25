@@ -1,6 +1,21 @@
 package cc.ekblad.mesmerise
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.default
+import java.io.File
+import java.net.URI
+import java.nio.file.Paths
+
+val JAR_URI = URI(
+    Options::class.java
+    .getResource("").path
+    .split("!")
+    .first()
+)
+val JAR_DIR = if(JAR_URI.isAbsolute) {
+    File(JAR_URI).parent
+} else {
+    "."
+}
 
 class Options(parser : ArgParser) {
     val port by parser
@@ -14,7 +29,7 @@ class Options(parser : ArgParser) {
         .storing("-l", "--library",
             argName="PATH",
             help="Path to adventure library"
-        ).default(".")
+        ).default(Paths.get(JAR_DIR, "adventures").toString())
     val loglevel by parser
         .storing(
             "-L", "--loglevel",
