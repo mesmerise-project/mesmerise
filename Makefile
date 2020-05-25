@@ -1,9 +1,9 @@
 .PHONY: app client build-env dist
 VERSION := $(shell grep ^version server/build.gradle | sed -e "s/version '\\([^']\\+\\)'/\\1/g")
-DISTDIR := build/fairytale-$(VERSION)
+DISTDIR := build/mesmerise-$(VERSION)
 
-fairytale-$(VERSION).jar: app
-	cp server/build/libs/fairytale-$(VERSION)-all.jar ./fairytale-$(VERSION).jar
+mesmerise-$(VERSION).jar: app
+	cp server/build/libs/mesmerise-$(VERSION)-all.jar ./mesmerise-$(VERSION).jar
 
 build-env: client/node_modules
 	mkdir -p server/src/main/resources/client
@@ -14,12 +14,12 @@ client/node_modules:
 client: build-env
 	cd client && npm run build
 
-dist: fairytale-$(VERSION).jar
+dist: mesmerise-$(VERSION).jar
 	@mkdir -p $(DISTDIR)
 	@rm -r $(DISTDIR)/* ; true
-	cp fairytale-$(VERSION).jar $(DISTDIR)/fairytale.jar
+	cp mesmerise-$(VERSION).jar $(DISTDIR)/mesmerise.jar
 	mkdir $(DISTDIR)/adventures
-	cd build && zip -r ../fairytale-$(VERSION).zip fairytale-$(VERSION)
+	cd build && zip -r ../mesmerise-$(VERSION).zip mesmerise-$(VERSION)
 
 app: build-env client
 	cp -r client/build/* server/src/main/resources/client/
