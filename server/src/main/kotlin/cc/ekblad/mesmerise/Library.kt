@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory
 import java.awt.Image
 import java.awt.image.BufferedImage
 import java.io.File
+import java.nio.file.Paths
 import javax.imageio.ImageIO
 
 class Library(private val path : String) {
@@ -22,7 +23,7 @@ class Library(private val path : String) {
                 listOf()
             } else {
                 dir.list().filter {
-                    File("${dir.absolutePath}/$it").isDirectory
+                    Paths.get(dir.absolutePath, it).toFile().isDirectory
                 }
             }
         }
@@ -34,12 +35,12 @@ class Library(private val path : String) {
     }
 
     fun getAdventureMeta(adventureName : String) : AdventureMeta? {
-        val dir = File("${this.path}/$adventureName")
+        val dir = Paths.get(this.path, adventureName).toFile()
         logger.info("Loading adventure {}", dir.absolutePath)
         return if (dir.isDirectory) {
             AdventureMeta(
                 name = adventureName,
-                scenes = loadScenes("$dir"),
+                scenes = loadScenes(dir.absolutePath),
                 assets = AdventureMeta.Assets(
                     images = listFiles(dir, IMAGE_DIR, ::isImageFile),
                     music = listFiles(dir, MUSIC_DIR) { it.extension == "mp3" }
@@ -69,7 +70,7 @@ class Library(private val path : String) {
     }
 
     private fun ensureThumbDirExists(adventure : String) : File {
-        val dir = File("$path/$adventure/$THUMBNAIL_DIR")
+        val dir = Paths.get(this.path, adventure, THUMBNAIL_DIR).toFile()
         if(!dir.isDirectory) {
             logger.info("Thumbnail dir for {} does not exist; creating...", adventure)
             dir.mkdir()
@@ -79,7 +80,12 @@ class Library(private val path : String) {
     }
 
     private fun thumbdirAutogenFile(adventure: String) : File {
-        return File("$path/$adventure/$THUMBNAIL_DIR/.auto_generated")
+        return Paths.get(
+            this.path,
+            adventure,
+            THUMBNAIL_DIR,
+            ".auto_generated"
+        ).toFile()
     }
 
     private fun createThumbnail(
@@ -88,7 +94,8 @@ class Library(private val path : String) {
         image : File
     ) : File {
         val dir = ensureThumbDirExists(adventure)
-        val tnfile = File("${dir.absolutePath}/$scene.${image.extension}")
+        val basename = Paths.get(dir.absolutePath, scene).toString()
+        val tnfile = File("$basename.${image.extension}")
         if(!tnfile.isFile) {
             logger.info("Thumbnail for {} does not exist; creating...", scene)
             val tn = ImageIO.read(image).scaled(THUMBNAIL_SIZE, THUMBNAIL_SIZE)
@@ -133,7 +140,8 @@ class Library(private val path : String) {
     }
 
     private fun loadScenes(path : String) : List<SceneMeta> {
-        val sceneFile = File("$path/$SCENE_FILE")
+        val sceneFile = Paths.get(path, SCENE_FILE).toFile()
+        println("SCENEFILE: $sceneFile")
         if(!sceneFile.exists()) {
             logger.warn("Adventure {} contains no scene file", File(path).absolutePath)
             return listOf()
@@ -149,7 +157,7 @@ class Library(private val path : String) {
     }
 
     private fun listFiles(adventureDir: File, subdir : String, p : (File) -> Boolean): List<String> {
-        val dir = File("${adventureDir.absolutePath}/$subdir")
+        val dir = Paths.get(adventureDir.absolutePath, subdir).toFile()
         if(!dir.isDirectory) {
             logger.warn("Adventure contains no '$subdir' directory: {}", adventureDir.absolutePath)
             return listOf()
@@ -159,10 +167,12 @@ class Library(private val path : String) {
 
     private fun mkScene(adventure : String, s: SceneMeta) : Pair<String, Scene> {
         val bg = s.background.fmap {
-            Background("$path/$adventure/$IMAGE_DIR/$it")
+            val path = Paths.get(this.path, adventure, IMAGE_DIR, it)
+            Background(path.toString())
         }
         val score = s.music.fmap {
-            Song("$path/$adventure/$MUSIC_DIR/$it")
+            val path = Paths.get(this.path, adventure, MUSIC_DIR, it)
+            Song(path.toString())
         }
         return Pair(s.name, Scene(bg, score))
     }
