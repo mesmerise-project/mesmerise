@@ -1,9 +1,10 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 import com.beust.klaxon.Klaxon
 import io.ktor.application.ApplicationCall
 import io.ktor.http.ContentType
 import io.ktor.http.HttpStatusCode
 import io.ktor.response.respondText
+import org.slf4j.Logger
 import java.awt.Image
 import java.io.File
 
@@ -15,12 +16,12 @@ internal fun isImageFile(f : File) : Boolean =
 internal val IMAGE_FORMATS =
     listOf("png", "jpg", "jpeg", "gif", "bmp")
 
-val klaxon = Klaxon()
-suspend fun ApplicationCall.respondJson(it : Any) =
+internal val klaxon = Klaxon()
+internal suspend fun ApplicationCall.respondJson(it : Any) =
     respondText(klaxon.toJsonString(it), ContentType.Application.Json)
-suspend fun ApplicationCall.respondOk() =
+internal suspend fun ApplicationCall.respondOk() =
     respondText("")
-suspend fun ApplicationCall.respond404() =
+internal suspend fun ApplicationCall.respond404() =
     respondText("not found", status = HttpStatusCode.NotFound)
 
 internal fun Image.scaled(width : Int, height : Int) : Image {

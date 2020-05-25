@@ -1,4 +1,4 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 import org.slf4j.*
 import java.awt.*
 import javax.swing.JFrame

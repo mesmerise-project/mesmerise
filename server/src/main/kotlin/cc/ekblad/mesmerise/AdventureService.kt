@@ -1,7 +1,6 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 import io.ktor.application.*
 import io.ktor.response.respondFile
-import io.ktor.response.respondOutputStream
 
 class AdventureService(
     private val viewer : Viewer,

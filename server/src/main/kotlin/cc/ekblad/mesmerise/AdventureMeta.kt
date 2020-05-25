@@ -1,4 +1,4 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 
 data class AdventureMeta(
     val name   : String,

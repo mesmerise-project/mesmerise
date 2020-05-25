@@ -1,4 +1,4 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 import org.slf4j.*
 import java.awt.Graphics
 import java.awt.Image
@@ -7,7 +7,7 @@ import javax.imageio.ImageIO
 
 private fun loadImage(path: String): Image {
     val f = File(path)
-    val c = Class.forName("cc.ekblad.fairytale.Background")
+    val c = Background::class.java
     LoggerFactory.getLogger(c).info("Loading background {}", f.absolutePath)
     return ImageIO.read(f)
 }

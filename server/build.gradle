@@ -34,8 +34,8 @@ compileTestKotlin {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'cc.ekblad.fairytale.FairytaleKt'
+        attributes 'Main-Class': 'cc.ekblad.mesmerise.MesmeriseKt'
     }
 }
 
-mainClassName = 'cc.ekblad.fairytale.FairytaleKt'
+mainClassName = 'cc.ekblad.mesmerise.MesmeriseKt'

@@ -1,4 +1,4 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 import javazoom.jl.player.Player
 import org.slf4j.LoggerFactory
 import java.io.BufferedInputStream

@@ -1,4 +1,4 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 import ch.qos.logback.classic.*
 import com.xenomachina.argparser.*
 import io.ktor.application.call
@@ -7,6 +7,9 @@ import io.ktor.routing.*
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import org.slf4j.LoggerFactory
+import java.io.File
+import java.net.URI
+import kotlin.system.exitProcess
 
 fun setLogLevel(level : String) {
     val l = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME) as Logger
@@ -21,10 +24,10 @@ fun setLogLevel(level : String) {
 
 fun main(args : Array<String>) {
     mainBody {
-        val logger = LoggerFactory.getLogger("cc.ekblad.fairytale")
+        val logger = LoggerFactory.getLogger("cc.ekblad.mesmerise")
         val opts = Options(ArgParser(args))
         setLogLevel(opts.loglevel)
-        logger.info("***Starting Fairytale***")
+        logger.info("***Starting Mesmerise***")
         logger.info("Library path: {}", opts.library)
         logger.info("HTTP port: {}", opts.port)
         logger.info("Log level: {}", opts.loglevel)

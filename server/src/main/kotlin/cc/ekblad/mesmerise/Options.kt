@@ -1,4 +1,4 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.default
 

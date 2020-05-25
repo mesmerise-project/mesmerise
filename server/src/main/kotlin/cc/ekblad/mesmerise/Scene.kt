@@ -1,4 +1,4 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 import java.awt.Graphics
 
 class Scene(val background : Prop?, val score : Prop?) : Prop {

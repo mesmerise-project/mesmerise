@@ -1,4 +1,4 @@
-package cc.ekblad.fairytale
+package cc.ekblad.mesmerise
 import org.ini4j.Wini
 import org.slf4j.LoggerFactory
 import java.awt.Image
