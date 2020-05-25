@@ -84,7 +84,14 @@ To build your own copy, you will need **make**, **Gradle** and **NPM**
 installed on your system.
 
 Once you do, check out the source code and run `make dist` to build your own
-release package.
+release package, or just `make` to build the application JAR file.
+
+If you're going to hack on Mesmerise, rebuilding the whole JAR whenever
+you make a modification is going to be annoying.
+Instead, you can run the client and server parts separately by running
+`npm start` in the `client` subdirectory and
+`./gradlew run --args="-l <path to a directory containing adventures"`
+in the `server` subdirectory.
 
 <span id="roadmap"></span>
 ### Roadmap
