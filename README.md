@@ -90,7 +90,7 @@ If you're going to hack on Mesmerise, rebuilding the whole JAR whenever
 you make a modification is going to be annoying.
 Instead, you can run the client and server parts separately by running
 `npm start` in the `client` subdirectory and
-`./gradlew run --args="-l <path to a directory containing adventures"`
+`./gradlew run --args="-l <path to adventure library>"`
 in the `server` subdirectory.
 
 <span id="roadmap"></span>
