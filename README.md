@@ -5,7 +5,8 @@ improv theater, and other social activities.
 
 What does it do?
 ----------------
-Mesmerise is a remote-controlled image viewer and music player.
+Mesmerise is a remote-controlled image viewer and music player
+(although [many more features](#roadmap) are planned).
 It organizes images and music tracks into _scenes_, which you can then
 switch between using a web-based control panel.
 
@@ -79,6 +80,23 @@ installed on your system.
 
 Once you do, check out the source code and run `make dist` to build your own
 release package.
+
+<span id="roadmap"></span>
+### Roadmap
+The following features are ~planned~ prophesied to be implemented some day.
+Something missing? [File an issue!](https://github.com/mesmerise-project/mesmerise/issues)
+
+- [x] Background images
+- [x] Background music
+- [ ] Lighting effects / Philips Hue support
+- [ ] Image/sound/lighting controls independent of scenes
+- [ ] Interactive maps
+- [ ] Share and install adventures using zip/rar/other archive formats
+- [ ] Overlay images / sprites
+- [ ] Sound effects
+- [ ] More audio formats
+- [ ] Drag-drop adventure editor
+- [ ] Native Chromecast support?
 
 License
 -------
