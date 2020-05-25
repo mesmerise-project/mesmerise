@@ -7,6 +7,7 @@ import io.ktor.response.respondText
 import org.slf4j.Logger
 import java.awt.Image
 import java.io.File
+import kotlin.system.exitProcess
 
 internal fun <T, U> T?.fmap(f : (T) -> U) : U? =
     if (this == null) null else f(this)
@@ -37,4 +38,9 @@ internal fun Image.scaled(width : Int, height : Int) : Image {
         h = height
     }
     return this.getScaledInstance(w, h, Image.SCALE_SMOOTH)
+}
+
+internal fun Logger.die(msg : String) : Any {
+    this.error(msg)
+    exitProcess(-1)
 }

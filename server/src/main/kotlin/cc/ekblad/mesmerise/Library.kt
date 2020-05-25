@@ -27,6 +27,12 @@ class Library(private val path : String) {
             }
         }
 
+    init {
+        if(!File(path).isDirectory) {
+            logger.die("Library directory $path does not exist")
+        }
+    }
+
     fun getAdventureMeta(adventureName : String) : AdventureMeta? {
         val dir = File("${this.path}/$adventureName")
         logger.info("Loading adventure {}", dir.absolutePath)
