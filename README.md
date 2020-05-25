@@ -28,7 +28,12 @@ Getting started
 3. On the computer you want to display your adventures, run Mesmerise by
    double-clicking `mesmerise.jar` file in the Mesmerise directory.
 4. On the device you want to control your adventures from, open a web browser
-   and navigate to the address displayed on your viewer computer.
+   and navigate to `<IP address of the viewer computer>:8080`.
+   If this is the same computer you intend to run the control panel on
+   (for instance, if you're going to cast the Mesmerise application window
+   to a Chromecast or similar device),
+   this will be `127.0.0.1:8080`.
+   If not, please consult your router and/or operating system documentation.
 
 <span id="adventures"></span>
 Creating adventures
