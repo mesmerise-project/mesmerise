@@ -1,4 +1,5 @@
-package cc.ekblad.mesmerise
+package cc.ekblad.mesmerise.props
+import cc.ekblad.mesmerise.scaled
 import org.slf4j.*
 import java.awt.Graphics
 import java.awt.Image

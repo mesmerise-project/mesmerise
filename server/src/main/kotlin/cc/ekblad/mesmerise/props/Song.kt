@@ -1,9 +1,7 @@
-package cc.ekblad.mesmerise
+package cc.ekblad.mesmerise.props
 import javazoom.jl.player.Player
 import org.slf4j.LoggerFactory
-import java.io.BufferedInputStream
 import java.io.File
-import java.io.FileInputStream
 import java.nio.file.Files
 import kotlin.concurrent.thread
 

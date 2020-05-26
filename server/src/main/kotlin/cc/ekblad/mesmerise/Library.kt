@@ -1,4 +1,7 @@
 package cc.ekblad.mesmerise
+import cc.ekblad.mesmerise.props.Background
+import cc.ekblad.mesmerise.props.Scene
+import cc.ekblad.mesmerise.props.Song
 import org.ini4j.Wini
 import org.slf4j.LoggerFactory
 import java.awt.Image

@@ -1,4 +1,6 @@
 package cc.ekblad.mesmerise
+import cc.ekblad.mesmerise.props.Prop
+import cc.ekblad.mesmerise.props.Scene
 import org.slf4j.*
 import java.awt.*
 import javax.swing.JFrame
