@@ -1,3 +1,12 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'net.sf.proguard:proguard-gradle:6.2.2'
+    }
+}
+
 plugins {
     id 'org.jetbrains.kotlin.jvm' version '1.3.72'
     id "com.github.johnrengelman.shadow" version "5.2.0"
@@ -30,6 +39,35 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+task minimizedJar(type: proguard.gradle.ProGuardTask, dependsOn: shadowJar) {
+    injars "build/libs/mesmerise-$version-all.jar"
+    outjars "build/libs/mesmerise-${version}-min.jar"
+    libraryjars System.properties.'java.home' + "/jmods/java.base.jmod"
+    libraryjars System.properties.'java.home' + "/lib/rt.jar"
+    printmapping "build/libs/mesmerise-${version}.map"
+    ignorewarnings
+    dontobfuscate
+    dontoptimize
+    dontwarn
+    keeppackagenames "cc.ekblad.mesmerise"
+    keepdirectories  "cc/ekblad/mesmerise"
+
+    def keepClasses = [
+            'io.ktor.server.netty.EngineMain',
+            'kotlin.reflect.jvm.internal.**',
+            'cc.ekblad.mesmerise.**',
+            'com.beust.klaxon.DefaultConverter',
+            'kotlin.text.RegexOption'
+    ]
+
+    for (keepClass in keepClasses) {
+        keep access: 'public', name: keepClass, {
+            method access: 'public'
+            method access: 'private'
+        }
+    }
 }
 
 jar {
