@@ -9,7 +9,7 @@ build-env: client/node_modules
 	mkdir -p server/src/main/resources/client
 
 client/node_modules:
-	cd client && npm install
+	cd client && npm ci
 
 client: build-env
 	cd client && npm run build
