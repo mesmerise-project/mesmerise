@@ -1,5 +1,5 @@
 .PHONY: app client build-env dist
-VERSION := $(shell grep ^version server/build.gradle | sed -e "s/version '\\([^']\\+\\)'/\\1/g")
+VERSION := $(shell grep ^version server/build.gradle | sed -e "s/version '\\([^']\\*\\)'/\\1/g")
 DISTDIR := build/mesmerise-$(VERSION)
 
 mesmerise-$(VERSION).jar: app
