@@ -1,4 +1,4 @@
-package cc.ekblad.mesmerise.props
+package se.mesmeri.mesmerise.props
 import java.awt.Graphics
 
 /**

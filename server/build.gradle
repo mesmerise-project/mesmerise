@@ -13,7 +13,7 @@ plugins {
     id 'application'
 }
 
-group 'cc.ekblad'
+group 'se.mesmeri'
 version '0.1-pre1'
 
 repositories {
@@ -51,13 +51,13 @@ task minimizedJar(type: proguard.gradle.ProGuardTask, dependsOn: shadowJar) {
     dontobfuscate
     dontoptimize
     dontwarn
-    keeppackagenames "cc.ekblad.mesmerise"
-    keepdirectories  "cc/ekblad/mesmerise"
+    keeppackagenames "se.mesmeri.mesmerise"
+    keepdirectories  "se/mesmeri/mesmerise"
 
     def keepClasses = [
             'io.ktor.server.netty.EngineMain',
             'kotlin.reflect.jvm.internal.**',
-            'cc.ekblad.mesmerise.**',
+            'se.mesmeri.mesmerise.**',
             'com.beust.klaxon.DefaultConverter',
             'kotlin.text.RegexOption'
     ]
@@ -72,8 +72,8 @@ task minimizedJar(type: proguard.gradle.ProGuardTask, dependsOn: shadowJar) {
 
 jar {
     manifest {
-        attributes 'Main-Class': 'cc.ekblad.mesmerise.MesmeriseKt'
+        attributes 'Main-Class': 'se.mesmeri.mesmerise.MesmeriseKt'
     }
 }
 
-mainClassName = 'cc.ekblad.mesmerise.MesmeriseKt'
+mainClassName = 'se.mesmeri.mesmerise.MesmeriseKt'

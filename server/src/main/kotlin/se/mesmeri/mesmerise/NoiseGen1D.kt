@@ -1,4 +1,4 @@
-package cc.ekblad.mesmerise
+package se.mesmeri.mesmerise
 
 interface NoiseGen1D {
     fun noise(x : Double) : Double

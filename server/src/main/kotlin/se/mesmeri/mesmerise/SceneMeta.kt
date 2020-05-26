@@ -1,4 +1,4 @@
-package cc.ekblad.mesmerise
+package se.mesmeri.mesmerise
 
 data class SceneMeta(
     val name : String,

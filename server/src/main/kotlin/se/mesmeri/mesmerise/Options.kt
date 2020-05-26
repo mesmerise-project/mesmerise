@@ -1,4 +1,4 @@
-package cc.ekblad.mesmerise
+package se.mesmeri.mesmerise
 import com.xenomachina.argparser.ArgParser
 import com.xenomachina.argparser.default
 import java.io.File

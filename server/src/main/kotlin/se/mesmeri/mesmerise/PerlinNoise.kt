@@ -1,4 +1,4 @@
-package cc.ekblad.mesmerise
+package se.mesmeri.mesmerise
 
 private val ps = intArrayOf(151,160,137,91,90,15,
     131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,21,10,23,
@@ -21,9 +21,15 @@ private fun grad(hash: Int, x: Double) = if(hash and 1 == 1) x else -x
 private fun octave(x: Double, salt : Int): Double {
     val x0 = x.toInt()
     val x1 = x0+1
-    val a = grad(ps[(x0*salt) and 255], x-x0)
-    val b = grad(ps[(x1*salt) and 255], x-x1)
-    return lerp(a, b, fade(x-x0))
+    val a = grad(
+        ps[(x0 * salt) and 255],
+        x - x0
+    )
+    val b = grad(
+        ps[(x1 * salt) and 255],
+        x - x1
+    )
+    return lerp(a, b, fade(x - x0))
 }
 
 private fun noise(
@@ -37,7 +43,7 @@ private fun noise(
     var amp = 1.0
     var freq = 1.0
     for(o in 1 .. octaves) {
-        y += amp*octave(x*freq, salt)
+        y += amp* octave(x * freq, salt)
         maxY += amp
         freq *= 2
         amp *= persistence

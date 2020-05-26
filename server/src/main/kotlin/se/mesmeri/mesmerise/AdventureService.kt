@@ -1,4 +1,4 @@
-package cc.ekblad.mesmerise
+package se.mesmeri.mesmerise
 import io.ktor.application.*
 import io.ktor.response.respondFile
 

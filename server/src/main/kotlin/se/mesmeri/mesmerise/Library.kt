@@ -1,7 +1,5 @@
-package cc.ekblad.mesmerise
-import cc.ekblad.mesmerise.props.Background
-import cc.ekblad.mesmerise.props.Scene
-import cc.ekblad.mesmerise.props.Song
+package se.mesmeri.mesmerise
+import se.mesmeri.mesmerise.props.*
 import org.ini4j.Wini
 import org.slf4j.LoggerFactory
 import java.awt.Image
@@ -127,8 +125,8 @@ class Library(private val path : String) {
     }
 
     fun getSceneThumbnail(
-            adventure : AdventureMeta,
-            scene : String
+        adventure : AdventureMeta,
+        scene : String
     ) : File? {
         return adventure.scenes
             .firstOrNull { it.name == scene }

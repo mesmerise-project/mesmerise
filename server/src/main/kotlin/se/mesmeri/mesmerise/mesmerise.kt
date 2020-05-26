@@ -1,4 +1,4 @@
-package cc.ekblad.mesmerise
+package se.mesmeri.mesmerise
 import ch.qos.logback.classic.*
 import com.xenomachina.argparser.*
 import io.ktor.application.call
@@ -24,7 +24,7 @@ fun setLogLevel(level : String) {
 
 fun main(args : Array<String>) {
     mainBody {
-        val logger = LoggerFactory.getLogger("cc.ekblad.mesmerise")
+        val logger = LoggerFactory.getLogger("se.mesmeri.mesmerise")
         val opts = Options(ArgParser(args))
         setLogLevel(opts.loglevel)
         logger.info("***Starting Mesmerise***")

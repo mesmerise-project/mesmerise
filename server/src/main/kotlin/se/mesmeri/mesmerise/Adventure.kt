@@ -1,6 +1,6 @@
-package cc.ekblad.mesmerise
+package se.mesmeri.mesmerise
 
-import cc.ekblad.mesmerise.props.Scene
+import se.mesmeri.mesmerise.props.Scene
 
 data class Adventure(
     val name : String,

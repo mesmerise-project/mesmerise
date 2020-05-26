@@ -1,19 +1,19 @@
-package cc.ekblad.mesmerise.props
-import cc.ekblad.mesmerise.NoiseGen1D
-import cc.ekblad.mesmerise.PerlinNoiseGen
+package se.mesmeri.mesmerise.props
+import se.mesmeri.mesmerise.NoiseGen1D
+import se.mesmeri.mesmerise.PerlinNoiseGen
 import java.awt.*
 import kotlin.math.*
 
 // Bresenham's line drawing algorithm, augmented with noise and broken lines.
 fun Graphics2D.noisyLine(
-        x0 : Int, y0 : Int, x1 : Int, y1 : Int,
-        noiseGen : NoiseGen1D,
-        seedScaleX : Double = 1.0,
-        seedScaleY : Double= 1.0,
-        noiseScaleX : Double = 1.0,
-        noiseScaleY : Double= 1.0,
-        segmentLength : Int = 1,
-        segmentSpacing : Int = 0
+    x0 : Int, y0 : Int, x1 : Int, y1 : Int,
+    noiseGen : NoiseGen1D,
+    seedScaleX : Double = 1.0,
+    seedScaleY : Double= 1.0,
+    noiseScaleX : Double = 1.0,
+    noiseScaleY : Double= 1.0,
+    segmentLength : Int = 1,
+    segmentSpacing : Int = 0
 ) {
     var x = x0
     var y = y0
@@ -60,10 +60,10 @@ fun Graphics2D.noisyLine(
 }
 
 class TravelMap(
-        private val background : Prop,
-        private val noiseGen : NoiseGen1D = PerlinNoiseGen(3, 0.25),
-        private val smoothness : Double = 0.5,
-        private val detours : Double = 0.25
+    private val background : Prop,
+    private val noiseGen : NoiseGen1D = PerlinNoiseGen(3, 0.25),
+    private val smoothness : Double = 0.5,
+    private val detours : Double = 0.25
 ) : Prop {
     override fun enterStage(screenW: Int, screenH: Int) =
         background.enterStage(screenW, screenH)
@@ -72,7 +72,7 @@ class TravelMap(
     override fun transitionIn(progress: Double) =
         background.transitionIn(progress)
     override fun transitionOut(progress: Double) =
-            background.transitionOut(progress)
+        background.transitionOut(progress)
 
     override fun render(g: Graphics) {
         TODO("How should map lines be defined and drawn?")

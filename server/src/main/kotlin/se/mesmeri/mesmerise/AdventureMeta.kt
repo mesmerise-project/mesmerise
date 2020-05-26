@@ -1,9 +1,9 @@
-package cc.ekblad.mesmerise
+package se.mesmeri.mesmerise
 
 data class AdventureMeta(
     val name   : String,
     val scenes : List<SceneMeta>,
-    val assets : AdventureMeta.Assets
+    val assets : Assets
 ) {
     data class Assets(
         val images : List<String>,

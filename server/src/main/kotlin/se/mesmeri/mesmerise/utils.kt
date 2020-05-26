@@ -1,4 +1,4 @@
-package cc.ekblad.mesmerise
+package se.mesmeri.mesmerise
 import com.beust.klaxon.Klaxon
 import io.ktor.application.ApplicationCall
 import io.ktor.http.ContentType
