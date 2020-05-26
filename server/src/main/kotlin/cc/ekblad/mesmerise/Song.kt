@@ -4,6 +4,7 @@ import org.slf4j.LoggerFactory
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileInputStream
+import java.nio.file.Files
 import kotlin.concurrent.thread
 
 class Song(path : String) : Prop {
@@ -38,6 +39,6 @@ class Song(path : String) : Prop {
 
     private fun loadFile(file : File) : Player {
         logger.info("Loading MP3: {}", file.absolutePath)
-        return Player(BufferedInputStream(FileInputStream(file)))
+        return Player(Files.newInputStream(file.toPath()).buffered())
     }
 }

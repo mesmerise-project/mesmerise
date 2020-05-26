@@ -141,7 +141,6 @@ class Library(private val path : String) {
 
     private fun loadScenes(path : String) : List<SceneMeta> {
         val sceneFile = Paths.get(path, SCENE_FILE).toFile()
-        println("SCENEFILE: $sceneFile")
         if(!sceneFile.exists()) {
             logger.warn("Adventure {} contains no scene file", File(path).absolutePath)
             return listOf()
