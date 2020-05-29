@@ -7,9 +7,6 @@ import io.ktor.routing.*
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import org.slf4j.LoggerFactory
-import java.io.File
-import java.net.URI
-import kotlin.system.exitProcess
 
 fun setLogLevel(level : String) {
     val l = LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME) as Logger
@@ -22,57 +19,55 @@ fun setLogLevel(level : String) {
     }
 }
 
-fun main(args : Array<String>) {
-    mainBody {
-        val logger = LoggerFactory.getLogger("se.mesmeri.mesmerise")
-        val opts = Options(ArgParser(args))
-        setLogLevel(opts.loglevel)
-        logger.info("***Starting Mesmerise***")
-        logger.info("Library path: {}", opts.library)
-        logger.info("HTTP port: {}", opts.port)
-        logger.info("Log level: {}", opts.loglevel)
+fun main(args : Array<String>) = mainBody {
+    val logger = LoggerFactory.getLogger("se.mesmeri.mesmerise")
+    val opts = Options(ArgParser(args))
+    setLogLevel(opts.loglevel)
+    logger.info("***Starting Mesmerise***")
+    logger.info("Library path: {}", opts.library)
+    logger.info("HTTP port: {}", opts.port)
+    logger.info("Log level: {}", opts.loglevel)
 
-        val viewer = Viewer()
-        val library = Library(opts.library)
-        viewer.start()
-        val service = AdventureService(viewer, library)
+    val viewer = Viewer()
+    val library = Library(opts.library)
+    viewer.start()
+    val service = AdventureService(viewer, library)
 
-        val server = embeddedServer(Netty, port = opts.port) {
-            routing {
-                route("/api") {
-                    get("/adventures") {
-                        service.listAdventures(call)
-                    }
-                    get("/adventures/{name}") {
-                        service.loadAdventure(call, call.parameters["name"]!!)
-                    }
-                    get("/adventures/{adv}/scenes/{scene}") {
-                        service.setScene(
-                            call,
-                            call.parameters["adv"]!!,
-                            call.parameters["scene"]!!
-                        )
-                    }
-                    get("/adventures/{adv}/scenes/{scene}/thumbnail") {
-                        service.getSceneThumbnail(
-                            call,
-                            call.parameters["adv"]!!,
-                            call.parameters["scene"]!!
-                        )
-                    }
-                    get("/silence") {
-                        service.killMusic(call)
-                    }
-                    get("/unsilence") {
-                        service.restartMusic(call)
-                    }
+    val server = embeddedServer(Netty, port = opts.port) {
+        routing {
+            route("/api") {
+                get("/adventures") {
+                    service.listAdventures(call)
                 }
-                static("/") {
-                    resource("/", "client/index.html")
-                    resources("client")
+                get("/adventures/{name}") {
+                    service.loadAdventure(call, call.parameters["name"]!!)
+                }
+                get("/adventures/{adv}/scenes/{scene}") {
+                    service.setScene(
+                        call,
+                        call.parameters["adv"]!!,
+                        call.parameters["scene"]!!
+                    )
+                }
+                get("/adventures/{adv}/scenes/{scene}/thumbnail") {
+                    service.getSceneThumbnail(
+                        call,
+                        call.parameters["adv"]!!,
+                        call.parameters["scene"]!!
+                    )
+                }
+                get("/silence") {
+                    service.killMusic(call)
+                }
+                get("/unsilence") {
+                    service.restartMusic(call)
                 }
             }
+            static("/") {
+                resource("/", "client/index.html")
+                resources("client")
+            }
         }
-        server.start(wait = true)
     }
+    server.start(wait = true)
 }
