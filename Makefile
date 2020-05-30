@@ -28,4 +28,4 @@ app: copy-client
 	cd server && ./gradlew build
 
 dist-app: copy-client
-	cd server && ./gradlew minimizedJar
+	cd server && ./gradlew clean minimizedJar
