@@ -12,7 +12,7 @@ class Song(path : String) : Prop {
     private var playerJob = null as Thread?
     private var playing = false
 
-    override fun enterStage(screenW : Int, screenH : Int) {
+    override fun enterStage(stage : Stage) {
         logger.debug("Launching player job for {}", file.absolutePath)
         this.playing = true
         this.playerJob = thread(isDaemon = true) {
@@ -28,7 +28,7 @@ class Song(path : String) : Prop {
         }
     }
 
-    override fun exitStage() {
+    override fun exitStage(stage : Stage) {
         this.playing = false
         this.player?.close()
         this.playerJob?.join()

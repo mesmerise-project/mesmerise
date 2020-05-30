@@ -65,19 +65,19 @@ class TravelMap(
     private val smoothness : Double = 0.5,
     private val detours : Double = 0.25
 ) : Prop {
-    override fun enterStage(screenW: Int, screenH: Int) =
-        background.enterStage(screenW, screenH)
-    override fun exitStage() =
-        background.exitStage()
-    override fun transitionIn(progress: Double) =
-        background.transitionIn(progress)
-    override fun transitionOut(progress: Double) =
-        background.transitionOut(progress)
+    override fun enterStage(stage : Stage) =
+        background.enterStage(stage)
+    override fun exitStage(stage : Stage) =
+        background.exitStage(stage)
+    override fun transitionIn(stage : Stage, progress: Double) =
+        background.transitionIn(stage, progress)
+    override fun transitionOut(stage : Stage, progress: Double) =
+        background.transitionOut(stage, progress)
 
-    override fun render(g: Graphics) {
+    override fun render(stage : Stage, g: Graphics) {
         TODO("How should map lines be defined and drawn?")
         val g2d = g as Graphics2D
-        background.render(g2d)
+        background.render(stage, g2d)
         g2d.color = Color.red
         g2d.stroke = BasicStroke(3F)
         val seedScalingFactor = (1-max(0.0001, min(1.0, smoothness)))/100

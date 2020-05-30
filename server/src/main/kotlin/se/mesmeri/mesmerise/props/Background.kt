@@ -20,11 +20,11 @@ class Background(private var originalImage : Image) : Prop {
         get() = this.scaledImage ?: this.originalImage
     constructor(path : String) : this(loadImage(path))
 
-    override fun enterStage(screenW: Int, screenH: Int) {
-        this.scaledImage = image.scaled(screenW, screenH)
+    override fun enterStage(stage : Stage) {
+        this.scaledImage = image.scaled(stage.screenW, stage.screenH)
     }
 
-    override fun render(g : Graphics) {
+    override fun render(stage : Stage, g : Graphics) {
         val x = (g.clipBounds.width - this.image.getWidth(null) as Int)/2
         val y = (g.clipBounds.height - this.image.getHeight(null) as Int)/2
         g.drawImage(this.image, x, y, null)

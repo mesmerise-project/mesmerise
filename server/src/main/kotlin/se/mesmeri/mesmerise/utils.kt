@@ -1,8 +1,8 @@
 package se.mesmeri.mesmerise
 import com.beust.klaxon.Klaxon
+import inkapplications.shade.Shade
 import io.ktor.application.ApplicationCall
-import io.ktor.http.ContentType
-import io.ktor.http.HttpStatusCode
+import io.ktor.http.*
 import io.ktor.response.respondText
 import org.slf4j.Logger
 import java.awt.Image
@@ -40,4 +40,16 @@ internal fun Image.scaled(width : Int, height : Int) : Image {
 internal fun Logger.die(msg : String) : Any {
     this.error(msg)
     exitProcess(-1)
+}
+
+internal fun Settings.createShade(force : Boolean = false) : Shade? {
+    if(!enablePhilipsHue && !force) {
+        return null
+    }
+    return philipsHueBaseUri?.let {
+        Shade(
+            initBaseUrl = it.toString(),
+            storage = this
+        )
+    }
 }

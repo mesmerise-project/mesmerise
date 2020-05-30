@@ -36,4 +36,10 @@ class Options(parser : ArgParser) {
             argName="LEVEL",
             help="Minimum log level to print (DEBUG/INFO/WARN/ERROR)"
         ).default("WARN")
+    val config by parser
+        .storing(
+            "-c", "--config",
+            argName="FILE",
+            help="Path to configuration file"
+        ).default("settings.ini")
 }

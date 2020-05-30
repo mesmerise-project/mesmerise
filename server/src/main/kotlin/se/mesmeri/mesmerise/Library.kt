@@ -151,7 +151,8 @@ class Library(private val path : String) {
             SceneMeta(
                 name = it.key,
                 background = it.value["background"],
-                music = it.value["music"]
+                music = it.value["music"],
+                light = it.value["light"]
             )
         }.sortedBy { it.name }
     }
@@ -174,6 +175,7 @@ class Library(private val path : String) {
             val path = Paths.get(this.path, adventure, MUSIC_DIR, it)
             Song(path.toString())
         }
-        return Pair(s.name, Scene(bg, score))
+        val light = s.light?.let { Light.of(it) }
+        return Pair(s.name, Scene(bg, score, light))
     }
 }

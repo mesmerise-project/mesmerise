@@ -1,5 +1,6 @@
 /*.jar
 /*.zip
-/adventures
 /build
+adventures
+settings.ini
 .*

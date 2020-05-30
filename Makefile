@@ -21,7 +21,7 @@ dist: dist-app
 	mkdir $(DISTDIR)/adventures
 	cd build && zip -r ../mesmerise-$(VERSION).zip mesmerise-$(VERSION)
 
-copy-client: build-env
+copy-client: build-env client
 	cp -r client/build/* server/src/main/resources/client/
 
 app: copy-client
