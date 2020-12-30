@@ -82,7 +82,7 @@ function Adventure(props) {
         </div>
         <div className="sceneSidebar">
           <button
-            className={`fas fa-volume-${muted ? "up" : "mute"}`}
+            className={`fas fa-volume-${muted ? "mute" : "up"}`}
             onClick={e => {
               props.api.setMuted(!muted);
               setMuted(!muted);
