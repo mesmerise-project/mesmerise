@@ -12,6 +12,7 @@ class Song(path : String) : Prop {
     private var playerJob = null as Thread?
     private var playing = false
 
+    // TODO: queue sounds on dedicated audio thread instead
     override fun enterStage(stage : Stage) {
         logger.debug("Launching player job for {}", file.absolutePath)
         this.playing = true
@@ -37,6 +38,7 @@ class Song(path : String) : Prop {
 
     private fun loadFile(file : File) : Player {
         logger.info("Loading MP3: {}", file.absolutePath)
+        // TODO: use java.nio instead, also .use() to fix resource leak
         return Player(Files.newInputStream(file.toPath()).buffered())
     }
 }

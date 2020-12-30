@@ -39,11 +39,15 @@ class Viewer(mkStage : (Int, Int) -> Stage) : JFrame() {
     }
 
     fun setScore(p : Prop) {
-        logger.debug("Setting score to {}", p)
-        this.score?.exitStage(stage)
-        this.score = p
-        p.enterStage(stage)
-        this.repaint()
+        if (p != this.score) {
+            logger.debug("Setting score to {}", p)
+            this.score?.exitStage(stage)
+            this.score = p
+            p.enterStage(stage)
+            this.repaint()
+        } else {
+            logger.debug("Score {} already playing; ignoring", p)
+        }
     }
 
     fun setLight(p : Prop) {
@@ -54,13 +58,33 @@ class Viewer(mkStage : (Int, Int) -> Stage) : JFrame() {
         this.repaint()
     }
 
-    fun setScene(s : Scene) {
-        logger.debug("Setting scene to {}", s)
-        this.scene?.exitStage(stage)
-        this.scene = s
-        s.enterStage(stage)
+    fun setScene(newScene : Scene) {
+        logger.debug("Setting scene to {}", newScene)
+        val oldScene = this.scene
+        this.scene = newScene
+        if (oldScene != null) {
+            val exitingProps = diffScenes(newScene, oldScene)
+            val enteringProps = diffScenes(oldScene, newScene)
+            exitingProps.exitStage(stage)
+            enteringProps.enterStage(stage)
+        } else {
+            newScene.enterStage(stage)
+        }
         this.repaint()
     }
+
+    /**
+     * Returns a scene containing all props which need to change in order to get from the first scene
+     * to the second.
+     */
+    private fun diffScenes(oldScene: Scene, newScene: Scene): Scene = Scene(
+        background = diffProp(oldScene.background, newScene.background),
+        score = diffProp(oldScene.score, newScene.score),
+        light = diffProp(oldScene.light, newScene.light),
+    )
+    
+    private fun diffProp(oldProp: Prop?, newProp: Prop?): Prop? =
+        if (oldProp == newProp) { null } else { newProp }
 
     fun silence() {
         logger.debug("Killing music")

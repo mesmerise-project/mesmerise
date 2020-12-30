@@ -5,17 +5,17 @@ import kotlin.math.*
 
 // TODO: use an interface for light
 class Light private constructor(
-    val color : Color? = null,
-    val colorTemp : ColorTemperature? = null,
-    val brightness : Percentage? = null,
-    val on : Boolean = true
+    val color: Color? = null,
+    val colorTemp: ColorTemperature? = null,
+    val brightness: Percentage? = null,
+    val on: Boolean = true
 ) : Prop {
-    override fun enterStage(stage : Stage) =
+    override fun enterStage(stage: Stage) =
         stage.setLight(this)
 
     companion object {
         private val defaultBrightness = 80.percent
-        fun of(light : String) : Light? {
+        fun of(light: String): Light? {
             val l = light.toLowerCase().filter { !it.isWhitespace() }
             return when(l) {
                 "campfire"   -> campfire
@@ -43,7 +43,7 @@ class Light private constructor(
          * point number clamped to [0, 1].
          * Example: ff0000:1.0
          */
-        private fun tryParseLight(l : String) : Light? {
+        private fun tryParseLight(l: String): Light? {
             val parts = l.split(":")
             if(parts.size > 2 || parts[0].length != 6) {
                 return null
