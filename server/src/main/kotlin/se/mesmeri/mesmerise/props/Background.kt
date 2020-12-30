@@ -14,7 +14,6 @@ private fun loadImage(path: String): Image {
 }
 
 class Background(private var originalImage : Image) : Prop {
-    private val logger = LoggerFactory.getLogger(javaClass)
     private var scaledImage : Image? = null
     private val image : Image
         get() = this.scaledImage ?: this.originalImage
@@ -25,8 +24,8 @@ class Background(private var originalImage : Image) : Prop {
     }
 
     override fun render(stage : Stage, g : Graphics) {
-        val x = (g.clipBounds.width - this.image.getWidth(null) as Int)/2
-        val y = (g.clipBounds.height - this.image.getHeight(null) as Int)/2
+        val x = (g.clipBounds.width - this.image.getWidth(null))/2
+        val y = (g.clipBounds.height - this.image.getHeight(null))/2
         g.drawImage(this.image, x, y, null)
     }
 }

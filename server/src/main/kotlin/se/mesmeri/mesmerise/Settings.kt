@@ -57,7 +57,7 @@ class Settings(backingFile : String) : TokenStorage {
     }
 
     var enablePhilipsHue : Boolean
-        get() = get(SECTION_HUE, SETTING_ENABLE)?.toBoolean() ?: false
+        get() = get(SECTION_HUE, SETTING_ENABLE).toBoolean()
         set(value) = set(SECTION_HUE, SETTING_ENABLE, value)
 
     var philipsHueBaseUri : URI?

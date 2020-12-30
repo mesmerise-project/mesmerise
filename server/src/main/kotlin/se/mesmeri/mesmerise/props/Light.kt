@@ -5,7 +5,7 @@ import kotlin.math.*
 
 // TODO: use an interface for light
 class Light private constructor(
-    val color : ConvertibleColor? = null,
+    val color : Color? = null,
     val colorTemp : ColorTemperature? = null,
     val brightness : Percentage? = null,
     val on : Boolean = true
