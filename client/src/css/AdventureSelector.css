@@ -31,3 +31,9 @@
 .adventureList .adventureButton:hover {
   background-color: rgb(255, 255, 255, 0.3);
 }
+
+@media(max-width: 450px) {
+  .adventureSelector {
+    min-width: 90%;
+  }
+}
