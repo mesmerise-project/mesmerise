@@ -46,10 +46,8 @@ internal fun Settings.createShade(force : Boolean = false) : Shade? {
     if(!enablePhilipsHue && !force) {
         return null
     }
-    return philipsHueBaseUri?.let {
-        Shade(
-            initBaseUrl = it.toString(),
-            storage = this
-        )
-    }
+    return Shade(
+        initBaseUrl = philipsHueBaseUri?.toString(),
+        storage = this
+    )
 }

@@ -33,7 +33,7 @@ dependencies {
     implementation "org.slf4j:slf4j-api:1.7.30"
     implementation "ch.qos.logback:logback-classic:1.2.3"
     implementation "com.xenomachina:kotlin-argparser:2.0.7"
-    implementation "com.github.Inkapplications.Shade:shade:1.1.0"
+    implementation "com.github.Inkapplications.Shade:shade:1.2.0"
     implementation name: "jl1.0"
 }
 compileKotlin {

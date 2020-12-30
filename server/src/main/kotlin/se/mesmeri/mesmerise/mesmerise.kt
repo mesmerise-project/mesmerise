@@ -76,15 +76,12 @@ fun main(args : Array<String>): Unit = mainBody {
                         service.restartMusic(call)
                     }
                     route("/lights") {
-                        get("/authenticate") { service.authLights(call) }
+                        get("/bridges") { service.getBridges(call) }
+                        get("/authenticate/{bridge}") { service.authLights(call, call.parameters["bridge"]!!) }
                         get { service.getLights(call) }
                         put("/enabled") {
                             val enable = call.receiveText() == "true"
                             service.enablePhilipsHue(call, enable)
-                        }
-                        put("/url") {
-                            val url = call.receiveText()
-                            service.setHueBaseUrl(call, url)
                         }
                         put("/{id}/enabled") {
                             val id = call.parameters["id"]!!

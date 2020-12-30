@@ -110,24 +110,30 @@ class AdventureService(
         }
     }
 
-    suspend fun setHueBaseUrl(call : ApplicationCall, url : String) {
-        settings.philipsHueBaseUri = URI(url)
-        call.respondOk()
-    }
-
     suspend fun enablePhilipsHue(call : ApplicationCall, enable : Boolean) {
         settings.enablePhilipsHue = enable
         call.respondOk()
     }
 
-    suspend fun authLights(call : ApplicationCall) {
-        val shade = settings.createShade(true)!!
+    suspend fun authLights(call : ApplicationCall, baseUri: String) {
+        settings.philipsHueBaseUri = URI(baseUri)
+        val shade = settings.createShade(force = true)!!
         shade.auth.awaitToken()
         try {
             shade.lights.getLights()
             call.respondOk()
         } catch(e : Exception) {
             call.respond(HttpStatusCode.Unauthorized)
+        }
+    }
+
+    suspend fun getBridges(call : ApplicationCall) {
+        val shade = settings.createShade(true)!!
+        try {
+            val bridges = shade.discovery.getDevices()
+            call.respondJson(bridges.map { it.url })
+        } catch (e: Exception) {
+            println(e)
         }
     }
 }

@@ -13,15 +13,11 @@ private const val SETTING_AUTH_TOKEN = "token"
 class HueLightSet(private val ini : Wini) {
     private var lights : Set<String>
     init {
-        lights = ini.get(SECTION_HUE, SETTING_LIGHTS)
-            ?.let(Utils::deserialize)
-            ?: emptySet()
+        lights = ini.get(SECTION_HUE, SETTING_LIGHTS)?.let(Utils::deserialize) ?: emptySet()
     }
     private companion object Utils {
-        fun serialize(lights : Set<String>) =
-            lights.joinToString(separator = ",")
-        fun deserialize(lights : String) =
-            lights.filter{ !it.isWhitespace() }.split(",").toSet()
+        fun serialize(lights : Set<String>) = lights.joinToString(separator = ",")
+        fun deserialize(lights : String) = lights.filter{ !it.isWhitespace() }.split(",").toSet()
     }
     fun add(id : String) {
         lights = lights + id
@@ -36,7 +32,7 @@ class HueLightSet(private val ini : Wini) {
     fun toList() : List<String> = lights.toList()
 }
 
-class Settings(val backingFile : String) : TokenStorage {
+class Settings(backingFile : String) : TokenStorage {
     private val ini : Wini
     init {
         val path = Path.of(backingFile)

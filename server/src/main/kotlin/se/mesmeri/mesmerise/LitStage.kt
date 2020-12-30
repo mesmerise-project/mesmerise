@@ -1,10 +1,9 @@
 package se.mesmeri.mesmerise
-import inkapplications.shade.Shade
 import inkapplications.shade.constructs.Coordinates
-import inkapplications.shade.constructs.HueError
 import inkapplications.shade.lights.LightStateModification
 import kotlinx.coroutines.runBlocking
-import se.mesmeri.mesmerise.props.*
+import se.mesmeri.mesmerise.props.Light
+import se.mesmeri.mesmerise.props.Stage
 
 class LitStage(
         private var settings : Settings,
