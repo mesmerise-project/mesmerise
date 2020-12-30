@@ -5,7 +5,7 @@ import AdventureSelector from './AdventureSelector.jsx';
 import AdventureClient from './AdventureClient.js';
 import './css/fontawesome.css';
 
-function App() {
+function App(props) {
   const api = new AdventureClient("/api");
   const [adventure, setAdventure] = useState(null);
   return adventure
